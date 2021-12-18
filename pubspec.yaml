@@ -37,6 +37,10 @@ dependencies:
 
   flutter_admin_scaffold: ^1.0.0
   editable: ^2.0.0
+  
+  webview_flutter_web: ^0.1.0
+  webview_flutter_platform_interface: ^1.8.0
+
 
   google_fonts: ^2.0.0
 

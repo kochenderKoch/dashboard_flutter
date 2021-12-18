@@ -1,3 +1,4 @@
+import 'package:dashboard_flutter/Screens/Guacamole/webview_screen.dart';
 import 'package:dashboard_flutter/Screens/News/news_screen.dart';
 import 'package:dashboard_flutter/Screens/Table/table_screen.dart';
 import 'package:dashboard_flutter/provider/theme_provider.dart';
@@ -58,6 +59,11 @@ class _SideBarWidgetState extends State<SideBarWidget> {
             icon: Icons.feed,
           ),
           MenuItem(
+            title: 'FlutterWeb',
+            route: '/webview',
+            icon: Icons.feed,
+          ),
+          MenuItem(
             title: 'Top Level',
             icon: Icons.file_copy,
             children: [
@@ -104,6 +110,12 @@ class _SideBarWidgetState extends State<SideBarWidget> {
               case "/news":
                 setState(() {
                   _currentView = const NewsScreen();
+                  _currentRoute = item.route!;
+                });
+                break;
+              case "/webview":
+                setState(() {
+                  _currentView = const GuacamoleWebViewScreen();
                   _currentRoute = item.route!;
                 });
                 break;
