@@ -30,9 +30,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  flex_color_scheme: ^4.1.1
   shared_preferences: ^2.0.6
   provider: ^5.0.0
+
 
   flutter_admin_scaffold: ^1.0.0
   editable: ^2.0.0

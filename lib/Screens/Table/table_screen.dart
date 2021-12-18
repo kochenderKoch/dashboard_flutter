@@ -1,4 +1,5 @@
 import 'package:dashboard_flutter/provider/table_provider.dart';
+import 'package:dashboard_flutter/provider/theme_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,13 +60,15 @@ List<DataColumn> _buildTableHeader(
 List<DataRow>? _buildTableContent(
     BuildContext context, TableProvider tableProvider) {
   List<DataRow> _rows = [];
-
-  String status;
+  final themeProvider = Provider.of<ThemeProvider>(context);
 
   for (var item in tableProvider.items) {
     List<DataCell> _currentCells = [];
     for (var value in item.toMap().values) {
-      _currentCells.add(DataCell(Text(value)));
+      _currentCells.add(DataCell(Text(
+        value,
+        style: TextStyle(color: themeProvider.getTheme().colorScheme.onSurface),
+      )));
     }
 
     _rows.add(DataRow(
@@ -73,16 +76,16 @@ List<DataRow>? _buildTableContent(
         color: MaterialStateColor.resolveWith((states) {
           switch (item.status) {
             case "OK":
-              return Colors.green[300]!;
+              return themeProvider.successColor;
 
             case "ERROR":
-              return Colors.red[300]!;
+              return themeProvider.errorColor;
 
             case "WARNING":
-              return Colors.yellow[400]!;
+              return themeProvider.warningColor;
 
             default:
-              return Colors.blue;
+              return themeProvider.elseColor;
           }
         })));
   }

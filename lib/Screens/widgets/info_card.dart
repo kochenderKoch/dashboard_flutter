@@ -1,5 +1,7 @@
+import 'package:dashboard_flutter/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant.dart';
 
@@ -23,15 +25,16 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Expanded(
       child: Container(
         height: 136,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: themeProvider.getTheme().scaffoldBackgroundColor,
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 6),
-                color: lightgrey.withOpacity(.1),
+                offset: const Offset(0, 6),
+                color: Colors.white.withOpacity(.1),
                 blurRadius: 12)
           ],
           borderRadius: BorderRadius.circular(8),
@@ -56,27 +59,31 @@ class InfoCard extends StatelessWidget {
                   ),
                   RichText(
                       textDirection: TextDirection.rtl,
-                      strutStyle: StrutStyle(fontSize: 18, height: 1.5),
+                      strutStyle: const StrutStyle(fontSize: 18, height: 1.5),
                       maxLines: 2,
-                      textHeightBehavior: TextHeightBehavior(
+                      textHeightBehavior: const TextHeightBehavior(
                           applyHeightToFirstAscent: true,
                           applyHeightToLastDescent: true),
                       textScaleFactor: 1.2,
                       textWidthBasis: TextWidthBasis.longestLine,
-                      locale: Locale('ar'),
+                      locale: const Locale('de'),
                       textAlign: TextAlign.center,
                       text: TextSpan(children: [
                         TextSpan(
                             text: "$title\n",
                             style: GoogleFonts.poppins(
                               fontSize: 14,
-                              color: Colors.black,
+                              color: themeProvider.getTheme().colorScheme.error,
                               fontWeight: FontWeight.w600,
                             )),
                         TextSpan(
                             text: "$value\n",
                             style: GoogleFonts.lato(
-                                fontSize: 40, color: isActive ? blue : dark))
+                                fontSize: 40,
+                                color: themeProvider
+                                    .getTheme()
+                                    .colorScheme
+                                    .onBackground))
                       ])),
                 ],
               ),
@@ -104,7 +111,7 @@ class InfoCard extends StatelessWidget {
 class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
     path.lineTo(
         0, size.height); //start path with this if you are making at bottom
 

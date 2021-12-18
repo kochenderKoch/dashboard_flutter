@@ -31,8 +31,8 @@ class NewsScreen extends StatelessWidget {
 List<Widget> _buildNotifications(
     BuildContext context, NotificationProvider notificationProvider) {
   List<Widget> _notifications = [
-    Padding(
-      padding: const EdgeInsets.all(16.0),
+    const Padding(
+      padding: EdgeInsets.all(16.0),
       child: Text(
         "Benachrichtigungen:",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
@@ -49,13 +49,13 @@ List<Widget> _buildNotifications(
 Widget _buildNotification(NotificationModel model) {
   return Card(
     elevation: 8,
-    shape: Border(left: BorderSide(color: Colors.red, width: 7)),
+    shape: const Border(left: BorderSide(color: Colors.red, width: 7)),
     child: ListTile(
-      leading: Icon(Icons.info),
+      leading: const Icon(Icons.info),
       hoverColor: Colors.red,
       title: Text(
         model.title,
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Text(model.subtitile),
       trailing: Text(model.date),

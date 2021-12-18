@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 
 class TableEntryModel {
   String name;

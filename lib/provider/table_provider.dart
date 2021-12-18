@@ -16,7 +16,7 @@ class TableProvider extends ChangeNotifier {
         path: "C:\\Programme\\Datei1.txt",
         date: "10.10.2021",
         status: "WARNING",
-        size: "2,3GB"),
+        size: "2,3 GB"),
     TableEntryModel(
         name: "389334",
         path: "C:\\Users\\user01\\Desktop\\bigFile100.ghm",
@@ -28,7 +28,7 @@ class TableProvider extends ChangeNotifier {
         path: "C:\\Container",
         date: "10.03.2021",
         status: "ERROR",
-        size: "10,3GB"),
+        size: "10,3 GB"),
   ];
 
   UnmodifiableListView<TableEntryModel> get items =>

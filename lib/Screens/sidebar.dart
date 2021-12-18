@@ -13,7 +13,7 @@ class SideBarWidget extends StatefulWidget {
 }
 
 class _SideBarWidgetState extends State<SideBarWidget> {
-  Widget _currentView = HomeScreen();
+  Widget _currentView = const HomeScreen();
   String _currentRoute = "/";
 
   @override
@@ -22,7 +22,6 @@ class _SideBarWidgetState extends State<SideBarWidget> {
     return AdminScaffold(
       //backgroundColor: themeProvider.getTheme().scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: themeProvider.getTheme().scaffoldBackgroundColor,
         //foregroundColor: themeProvider.getTheme().primaryColor,
         title: const Text('Caesar Dashboard'),
         actions: [
@@ -30,18 +29,18 @@ class _SideBarWidgetState extends State<SideBarWidget> {
             onPressed: () {
               themeProvider.setLightMode();
             },
-            icon: Icon(Icons.light_mode),
+            icon: const Icon(Icons.light_mode),
           ),
           IconButton(
               onPressed: () {
                 themeProvider.setDarkMode();
               },
-              icon: Icon(Icons.dark_mode))
+              icon: const Icon(Icons.dark_mode))
         ],
       ),
       sideBar: SideBar(
         backgroundColor: themeProvider.getTheme().bottomAppBarColor,
-        activeBackgroundColor: themeProvider.getTheme().selectedRowColor,
+        activeBackgroundColor: themeProvider.getTheme().highlightColor,
         items: const [
           MenuItem(
             title: 'Dashboard',
@@ -92,19 +91,19 @@ class _SideBarWidgetState extends State<SideBarWidget> {
             switch (item.route) {
               case "/":
                 setState(() {
-                  _currentView = HomeScreen();
+                  _currentView = const HomeScreen();
                   _currentRoute = item.route!;
                 });
                 break;
               case "/table":
                 setState(() {
-                  _currentView = TableView();
+                  _currentView = const TableView();
                   _currentRoute = item.route!;
                 });
                 break;
               case "/news":
                 setState(() {
-                  _currentView = NewsScreen();
+                  _currentView = const NewsScreen();
                   _currentRoute = item.route!;
                 });
                 break;
@@ -116,8 +115,8 @@ class _SideBarWidgetState extends State<SideBarWidget> {
         footer: Container(
           height: 50,
           width: double.infinity,
-          color: Color(0xff444444),
-          child: Center(
+          color: const Color(0xff444444),
+          child: const Center(
             child: Text(
               'footer',
               style: TextStyle(

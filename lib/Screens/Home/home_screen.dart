@@ -1,6 +1,8 @@
 import 'package:dashboard_flutter/Screens/widgets/info_card.dart';
+import 'package:dashboard_flutter/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,6 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var _height = MediaQuery.of(context).size.height;
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         Padding(
@@ -18,15 +21,10 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20.0, top: 20.0),
                   child: Text(
                     "Übersicht",
-                    style: GoogleFonts.poppins(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
                   ),
                 ),
                 SizedBox(
@@ -72,24 +70,24 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Card(
             elevation: 7,
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: RichText(
-                  text: TextSpan(children: [
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: RichText(
+                text: TextSpan(
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: themeProvider.getTheme().colorScheme.onBackground,
+                    fontWeight: FontWeight.w200,
+                  ),
+                  children: const [
                     TextSpan(
                       text: "Informationen \n\n",
-                      style: GoogleFonts.poppins(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      ),
                     ),
                     TextSpan(
                       text:
                           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer",
                     )
-                  ]),
+                  ],
                 ),
               ),
             ),
