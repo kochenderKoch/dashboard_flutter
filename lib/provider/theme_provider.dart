@@ -60,7 +60,8 @@ class ThemeProvider with ChangeNotifier {
     disabledColor: const Color(0xFF2c3336),
     canvasColor: const Color(0xFF15191a),
     cardColor: const Color(0xFF131515),
-    dialogBackgroundColor: const Color(0xFF131515),
+    //dialogBackgroundColor: const Color(0xFF131515),
+    dialogBackgroundColor: const Color(0xFF1f292e),
     scaffoldBackgroundColor: const Color(0xFF1f292e),
     errorColor: const Color(0xFFcf6679),
   );

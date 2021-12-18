@@ -14,7 +14,7 @@ class CaesarDashboardApp extends StatelessWidget {
     return BetterFeedback(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Dashboard',
         theme: themeProvider.getTheme(),
         home: SideBarWidget(),
       ),

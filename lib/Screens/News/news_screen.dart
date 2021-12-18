@@ -1,3 +1,4 @@
+import 'package:dashboard_flutter/Screens/News/widgets/notification_tile.dart';
 import 'package:dashboard_flutter/model/notification_model.dart';
 import 'package:dashboard_flutter/provider/notification_provider.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ List<Widget> _buildNotifications(
   ];
 
   for (var item in notificationProvider.items) {
-    _notifications.add(_buildNotification(item));
+    _notifications.add(_buildNotification2(item));
   }
   return _notifications;
 }
@@ -61,4 +62,8 @@ Widget _buildNotification(NotificationModel model) {
       trailing: Text(model.date),
     ),
   );
+}
+
+Widget _buildNotification2(NotificationModel model) {
+  return NotificationCard(model: model);
 }
