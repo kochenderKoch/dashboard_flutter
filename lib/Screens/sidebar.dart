@@ -1,10 +1,16 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:dashboard_flutter/Screens/Guacamole/webview_screen.dart';
 import 'package:dashboard_flutter/Screens/News/news_screen.dart';
 import 'package:dashboard_flutter/Screens/Table/table_screen.dart';
 import 'package:dashboard_flutter/provider/theme_provider.dart';
+import 'package:feedback/feedback.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'Home/home_screen.dart';
 
@@ -128,17 +134,33 @@ class _SideBarWidgetState extends State<SideBarWidget> {
           height: 50,
           width: double.infinity,
           color: const Color(0xff444444),
-          child: const Center(
-            child: Text(
-              'footer',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
+          child: Center(
+              child: ElevatedButton(
+                  onPressed: () {
+                    BetterFeedback.of(context).show(
+                      (feedback) async {
+                        final screenshotFilePath =
+                            await writeImageToStorage(feedback.screenshot);
+
+                        await Share.shareFiles(
+                          [screenshotFilePath],
+                          text: feedback.text,
+                        );
+                      },
+                    );
+                  },
+                  child: const Text("Sende Feedback"))),
         ),
       ),
       body: _currentView,
     );
+  }
+
+  Future<String> writeImageToStorage(Uint8List feedbackScreenshot) async {
+    final Directory output = await getTemporaryDirectory();
+    final String screenshotFilePath = '${output.path}/feedback.png';
+    final File screenshotFile = File(screenshotFilePath);
+    await screenshotFile.writeAsBytes(feedbackScreenshot);
+    return screenshotFilePath;
   }
 }

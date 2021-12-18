@@ -33,11 +33,13 @@ dependencies:
   flex_color_scheme: ^4.1.1
   shared_preferences: ^2.0.6
   provider: ^5.0.0
-
+  feedback: ^2.2.1
+  path_provider: ^2.0.8
+  share_plus: ^3.0.4
 
   flutter_admin_scaffold: ^1.0.0
   editable: ^2.0.0
-  
+
   webview_flutter_web: ^0.1.0
   webview_flutter_platform_interface: ^1.8.0
 
