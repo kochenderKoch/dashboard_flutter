@@ -29,10 +29,44 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>dashboard_flutter</title>
+  <style>
+body {
+background-color: #fa6216;
+}
+    .container {
+	
+      width: 100vw;
+      height: 80vh;
+      display: flex; /* Default Axis is X*/
+      justify-content: center; /* Main Axis */
+      align-items: center; /* Cross Axis */
+    }
+.textcontainer {
+	
+      width: 100vw;
+      height: 20vh;
+      display: flex; /* Default Axis is X*/
+      justify-content: center; /* Main Axis */
+      align-items: center; /* Cross Axis */
+    }
+    .indicator{
+      width: 50vw;
+    }
+</style>
+
+
+  <title>Dashboard</title>
   <link rel="manifest" href="manifest.json">
 </head>
-<body>
+<body style="overflow: hidden">
+  <div id="loading_indicator" class="container">
+    <img class="indicator" src="./assets/loading.gif" />
+  </div>
+<div id="" class="textcontainer">
+    <h1> Webseite wird geladen .... </h1>
+  </div>
+
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
@@ -99,6 +133,16 @@
       // Service workers not supported. Just drop the <script> tag.
       loadMainDartJs();
     }
+  </script>
+  <script>
+    window.onload = function () {
+        setTimeout(function () {
+          var loadingIndicator = document.getElementById("loading_indicator");
+          if (loadingIndicator) {
+            loadingIndicator.remove();
+          }
+        }, 10000);
+};
   </script>
 </body>
 </html>
