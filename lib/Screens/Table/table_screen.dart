@@ -1,3 +1,4 @@
+import 'package:dashboard_flutter/model/timecheck_model.dart';
 import 'package:dashboard_flutter/provider/table_provider.dart';
 import 'package:dashboard_flutter/provider/theme_provider.dart';
 
@@ -13,8 +14,16 @@ class TableView extends StatefulWidget {
 
 class _TableViewState extends State<TableView> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final tableProvider = Provider.of<TableProvider>(context);
+    List<TimecheckModel> data = Provider.of<List<TimecheckModel>>(context);
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Card(
@@ -24,10 +33,12 @@ class _TableViewState extends State<TableView> {
           children: [
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: DataTable(
-                columns: _buildTableHeader(context, tableProvider),
-                rows: _buildTableContent(context, tableProvider)!,
-              ),
+              child: data.isEmpty
+                  ? const Text("Nothing to show.")
+                  : DataTable(
+                      columns: _buildTableHeader(context, tableProvider, data),
+                      rows: _buildTableContent(context, tableProvider, data)!,
+                    ),
             ),
           ],
         ),
@@ -36,9 +47,9 @@ class _TableViewState extends State<TableView> {
   }
 }
 
-List<DataColumn> _buildTableHeader(
-    BuildContext context, TableProvider tableProvider) {
-  final firstElement = tableProvider.items.first;
+List<DataColumn> _buildTableHeader(BuildContext context,
+    TableProvider tableProvider, List<TimecheckModel> data) {
+  final firstElement = data.first;
 
   List<DataColumn> _cols = [];
 
@@ -57,12 +68,12 @@ List<DataColumn> _buildTableHeader(
   return _cols;
 }
 
-List<DataRow>? _buildTableContent(
-    BuildContext context, TableProvider tableProvider) {
+List<DataRow>? _buildTableContent(BuildContext context,
+    TableProvider tableProvider, List<TimecheckModel> data) {
   List<DataRow> _rows = [];
   final themeProvider = Provider.of<ThemeProvider>(context);
 
-  for (var item in tableProvider.items) {
+  for (var item in data) {
     List<DataCell> _currentCells = [];
     for (var value in item.toMap().values) {
       _currentCells.add(DataCell(Text(
