@@ -11,12 +11,13 @@ class TimestampService {
         //"Accept": "application/json",
         //"Access-Control_Allow_Origin": "*",
       });
-
-      var _data = jsonDecode(response.body) as List;
+      var _data = json.decode(response.body);
       List<TimecheckModel> _result = [];
 
-      for (var item in _data) {
-        _result.add(TimecheckModel.fromJson(item));
+      for (var _item in _data) {
+        Map<String, dynamic> item = _item as Map<String, dynamic>;
+        _result.add(
+            TimecheckModel(user: item['user'], timestamp: item['timestamp']));
       }
 
       return _result;

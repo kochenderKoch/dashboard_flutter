@@ -3,7 +3,7 @@ import 'dart:convert';
 class TimecheckModel {
   String user;
   int timestamp;
-  String status = "OK";
+  String status = "UNKNOWN";
 
   TimecheckModel({
     required this.user,

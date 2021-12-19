@@ -30,7 +30,15 @@ class _SideBarWidgetState extends State<SideBarWidget> {
       //backgroundColor: themeProvider.getTheme().scaffoldBackgroundColor,
       appBar: AppBar(
         //foregroundColor: themeProvider.getTheme().primaryColor,
-        title: const Text('Caesar Dashboard'),
+        title: TextButton(
+          child: const Text("Caesar Dashboard"),
+          onPressed: () {
+            setState(() {
+              _currentView = const HomeScreen();
+              _currentRoute = "/";
+            });
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {

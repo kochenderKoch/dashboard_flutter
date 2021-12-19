@@ -16,6 +16,7 @@ class _TableViewState extends State<TableView> {
   @override
   void initState() {
     // TODO: implement initState
+    setState(() {});
     super.initState();
   }
 
@@ -34,7 +35,7 @@ class _TableViewState extends State<TableView> {
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: data.isEmpty
-                  ? const Text("Nothing to show.")
+                  ? const Center(child: Text("Nothing to show."))
                   : DataTable(
                       columns: _buildTableHeader(context, tableProvider, data),
                       rows: _buildTableContent(context, tableProvider, data)!,
@@ -77,7 +78,7 @@ List<DataRow>? _buildTableContent(BuildContext context,
     List<DataCell> _currentCells = [];
     for (var value in item.toMap().values) {
       _currentCells.add(DataCell(Text(
-        value,
+        value.toString(),
         style: TextStyle(color: themeProvider.getTheme().colorScheme.onSurface),
       )));
     }
@@ -96,7 +97,7 @@ List<DataRow>? _buildTableContent(BuildContext context,
               return themeProvider.warningColor;
 
             default:
-              return themeProvider.elseColor;
+              return themeProvider.getTheme().backgroundColor;
           }
         })));
   }
