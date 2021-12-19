@@ -9,32 +9,32 @@ class NotificationProvider extends ChangeNotifier {
         date: "12.12.2021",
         title: "Update Machine 1",
         subtitile: "Update auf der Machine 1 - Neue Version 10.1.2",
-        stauts: "INFO"),
+        status: "INFO"),
     NotificationModel(
         date: "12.12.2021",
         title: "Update Machine 1",
         subtitile: "Update auf der Machine 1 - Neue Version 10.1.2",
-        stauts: "INFO"),
+        status: "INFO"),
     NotificationModel(
         date: "12.12.2021",
         title: "Update Machine 1",
         subtitile: "Update auf der Machine 1 - Neue Version 10.1.2",
-        stauts: "INFO"),
+        status: "INFO"),
     NotificationModel(
         date: "12.12.2021",
         title: "Update Machine 1",
         subtitile: "Update auf der Machine 1 - Neue Version 10.1.2",
-        stauts: "INFO"),
+        status: "INFO"),
     NotificationModel(
         date: "12.12.2021",
         title: "Update Machine 1",
         subtitile: "Update auf der Machine 1 - Neue Version 10.1.2",
-        stauts: "INFO"),
+        status: "INFO"),
     NotificationModel(
         date: "12.12.2021",
         title: "Update Machine 1",
         subtitile: "Update auf der Machine 1 - Neue Version 10.1.2",
-        stauts: "INFO"),
+        status: "INFO"),
   ];
 
   UnmodifiableListView<NotificationModel> get items =>

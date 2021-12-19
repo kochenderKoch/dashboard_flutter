@@ -4,25 +4,25 @@ class NotificationModel {
   String date;
   String title;
   String subtitile;
-  String stauts;
+  String status;
   NotificationModel({
     required this.date,
     required this.title,
     required this.subtitile,
-    required this.stauts,
+    required this.status,
   });
 
   NotificationModel copyWith({
     String? date,
     String? title,
     String? subtitile,
-    String? stauts,
+    String? status,
   }) {
     return NotificationModel(
       date: date ?? this.date,
       title: title ?? this.title,
       subtitile: subtitile ?? this.subtitile,
-      stauts: stauts ?? this.stauts,
+      status: status ?? this.status,
     );
   }
 
@@ -31,7 +31,7 @@ class NotificationModel {
       'date': date,
       'title': title,
       'subtitile': subtitile,
-      'stauts': stauts,
+      'status': status,
     };
   }
 
@@ -40,7 +40,7 @@ class NotificationModel {
       date: map['date'] ?? '',
       title: map['title'] ?? '',
       subtitile: map['subtitile'] ?? '',
-      stauts: map['stauts'] ?? '',
+      status: map['status'] ?? '',
     );
   }
 
@@ -51,7 +51,7 @@ class NotificationModel {
 
   @override
   String toString() {
-    return 'NotificationModel(date: $date, title: $title, subtitile: $subtitile, stauts: $stauts)';
+    return 'NotificationModel(date: $date, title: $title, subtitile: $subtitile, status: $status)';
   }
 
   @override
@@ -62,7 +62,7 @@ class NotificationModel {
         other.date == date &&
         other.title == title &&
         other.subtitile == subtitile &&
-        other.stauts == stauts;
+        other.status == status;
   }
 
   @override
@@ -70,6 +70,6 @@ class NotificationModel {
     return date.hashCode ^
         title.hashCode ^
         subtitile.hashCode ^
-        stauts.hashCode;
+        status.hashCode;
   }
 }

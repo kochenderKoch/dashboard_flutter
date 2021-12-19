@@ -73,13 +73,8 @@ class HomeScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: RichText(
-                text: TextSpan(
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    color: themeProvider.getTheme().colorScheme.onBackground,
-                    fontWeight: FontWeight.w200,
-                  ),
-                  children: const [
+                text: const TextSpan(
+                  children: [
                     TextSpan(
                       text: "Informationen \n\n",
                     ),

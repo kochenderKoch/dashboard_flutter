@@ -1,11 +1,15 @@
-import 'package:dashboard_flutter/model/notification_model.dart';
-import 'package:dashboard_flutter/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:dashboard_flutter/model/notification_model.dart';
+import 'package:dashboard_flutter/provider/theme_provider.dart';
+
 class NotificationCard extends StatelessWidget {
-  const NotificationCard({Key? key, required NotificationModel model})
-      : super(key: key);
+  final NotificationModel model;
+  NotificationCard({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +23,11 @@ class NotificationCard extends StatelessWidget {
         padding: const EdgeInsets.only(top: 8.0, left: 12.0, right: 12.0),
         child: Card(
           color: themeProvider.getTheme().dialogBackgroundColor,
-          shape: const Border(left: BorderSide(color: Colors.red, width: 7)),
+          shape: Border(
+            left: BorderSide(
+                color: model.status == "1" ? Colors.yellow : Colors.red,
+                width: 7),
+          ),
           elevation: 8,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -30,7 +38,7 @@ class NotificationCard extends StatelessWidget {
                 SizedBox(
                   width: _width / 128,
                 ),
-                Icon(Icons.info),
+                model.status == "1" ? Icon(Icons.info) : Icon(Icons.warning),
                 SizedBox(
                   width: _width / 64,
                 ),
@@ -40,23 +48,23 @@ class NotificationCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Titel",
+                        model.title,
                         style: TextStyle(
                             fontSize: 16.0, fontWeight: FontWeight.bold),
                       ),
                       Divider(),
-                      Text("Beschreibung"),
+                      Text(model.subtitile),
                       Divider(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Von %AUTHOR%",
+                            "Von Caesar",
                             style: TextStyle(
                                 fontSize: 12.0, fontWeight: FontWeight.w100),
                           ),
                           Text(
-                            "%Timesstamp%",
+                            model.date,
                             style: TextStyle(
                                 fontSize: 12.0, fontWeight: FontWeight.w100),
                           )

@@ -1,9 +1,12 @@
+// ignore_for_file: unnecessary_const
+
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dashboard_flutter/Screens/Guacamole/webview_screen.dart';
 import 'package:dashboard_flutter/Screens/News/news_screen.dart';
 import 'package:dashboard_flutter/Screens/Table/table_screen.dart';
+import 'package:dashboard_flutter/provider/role_provider.dart';
 import 'package:dashboard_flutter/provider/theme_provider.dart';
 import 'package:feedback/feedback.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +29,12 @@ class _SideBarWidgetState extends State<SideBarWidget> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final roleProvider = Provider.of<RoleProvider>(context);
     return AdminScaffold(
       //backgroundColor: themeProvider.getTheme().scaffoldBackgroundColor,
       appBar: AppBar(
         //foregroundColor: themeProvider.getTheme().primaryColor,
-        title: TextButton(
+        title: ElevatedButton(
           child: const Text("Caesar Dashboard"),
           onPressed: () {
             setState(() {
@@ -40,6 +44,9 @@ class _SideBarWidgetState extends State<SideBarWidget> {
           },
         ),
         actions: [
+          const SizedBox(
+            width: 20,
+          ),
           IconButton(
             onPressed: () {
               themeProvider.setLightMode();
@@ -50,34 +57,43 @@ class _SideBarWidgetState extends State<SideBarWidget> {
               onPressed: () {
                 themeProvider.setDarkMode();
               },
-              icon: const Icon(Icons.dark_mode))
+              icon: const Icon(Icons.dark_mode)),
+          roleProvider.roleModel.isAdmin()
+              ? const Center(child: Text("Role: Admin"))
+              : const Center(child: Text("Role: User")),
+          IconButton(
+            onPressed: () {
+              roleProvider.changeUser();
+            },
+            icon: const Icon(Icons.admin_panel_settings),
+          ),
         ],
       ),
       sideBar: SideBar(
         backgroundColor: themeProvider.getTheme().bottomAppBarColor,
         activeBackgroundColor: themeProvider.getTheme().highlightColor,
         items: const [
-          MenuItem(
+          const MenuItem(
             title: 'Dashboard',
             route: '/',
             icon: Icons.dashboard,
           ),
-          MenuItem(
+          const MenuItem(
             title: 'Verzeichnis',
             route: '/table',
             icon: Icons.table_chart,
           ),
-          MenuItem(
+          const MenuItem(
             title: 'Newsfeed',
             route: '/news',
             icon: Icons.feed,
           ),
-          MenuItem(
+          const MenuItem(
             title: 'FlutterWeb',
             route: '/webview',
             icon: Icons.feed,
           ),
-          MenuItem(
+          const MenuItem(
             title: 'Top Level',
             icon: Icons.file_copy,
             children: [
