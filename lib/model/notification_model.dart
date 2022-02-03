@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class NotificationModel {
-  String date;
+  int date;
   String title;
   String subtitile;
   String status;
@@ -13,7 +14,7 @@ class NotificationModel {
   });
 
   NotificationModel copyWith({
-    String? date,
+    int? date,
     String? title,
     String? subtitile,
     String? status,
@@ -48,6 +49,12 @@ class NotificationModel {
 
   factory NotificationModel.fromJson(String source) =>
       NotificationModel.fromMap(json.decode(source));
+
+  String readableTimestamp({String formatString = "dd.MM.yyyy hh:mm"}) {
+    DateFormat dateFormat = DateFormat(formatString);
+    return dateFormat
+        .format(DateTime.fromMillisecondsSinceEpoch(this.date * 1000));
+  }
 
   @override
   String toString() {

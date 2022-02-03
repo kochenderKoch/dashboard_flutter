@@ -1,12 +1,30 @@
 import 'package:dashboard_flutter/Screens/News/widgets/notification_tile.dart';
+import 'package:dashboard_flutter/model/add_news_model.dart';
 import 'package:dashboard_flutter/model/notification_model.dart';
 import 'package:dashboard_flutter/provider/notification_provider.dart';
 import 'package:dashboard_flutter/provider/role_provider.dart';
+import 'package:dashboard_flutter/services/news_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends StatefulWidget {
   const NewsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<NewsScreen> createState() => _NewsScreenState();
+}
+
+class _NewsScreenState extends State<NewsScreen> {
+  final headlineController = TextEditingController();
+  final contentController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    headlineController.addListener(() {});
+    contentController.addListener(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +58,7 @@ class NewsScreen extends StatelessWidget {
                         Flexible(
                             flex: 1,
                             child: TextFormField(
+                              controller: headlineController,
                               autofocus: true,
                               decoration: InputDecoration(
                                   labelText: 'Titel',
@@ -60,6 +79,7 @@ class NewsScreen extends StatelessWidget {
                         Flexible(
                             flex: 3,
                             child: TextFormField(
+                              controller: contentController,
                               decoration: InputDecoration(
                                   labelText: 'Neue Nachricht',
                                   enabledBorder: OutlineInputBorder(
@@ -77,7 +97,9 @@ class NewsScreen extends StatelessWidget {
                           width: _width / 128,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            sendNotification();
+                          },
                           child: const Text("Abschicken"),
                         ),
                       ],
@@ -88,6 +110,13 @@ class NewsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void sendNotification() {
+    NewsService.addNews(AddNewsModel(
+        headline: headlineController.text,
+        content: contentController.text,
+        status: 0));
   }
 }
 
@@ -121,7 +150,7 @@ Widget _buildNotification(NotificationModel model) {
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Text(model.subtitile),
-      trailing: Text(model.date),
+      trailing: Text(model.readableTimestamp()),
     ),
   );
 }

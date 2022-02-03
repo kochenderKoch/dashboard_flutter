@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class TimecheckModel {
   String user;
   int timestamp;
-  String status = "UNKNOWN";
+  String status = "WARNING";
 
   TimecheckModel({
     required this.user,
@@ -32,6 +33,12 @@ class TimecheckModel {
       user: map['user'] ?? '',
       timestamp: map['timestamp']?.toInt() ?? 0,
     );
+  }
+
+  String readableTimestamp({String formatString = "dd.MM.yyyy hh:mm"}) {
+    DateFormat dateFormat = DateFormat(formatString);
+    return dateFormat
+        .format(DateTime.fromMillisecondsSinceEpoch(this.timestamp * 1000));
   }
 
   String toJson() => json.encode(toMap());

@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:dashboard_flutter/Screens/Guacamole/webview.dart';
+import 'package:dashboard_flutter/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter_web/webview_flutter_web.dart';
 
 class GuacamoleWebViewScreen extends StatefulWidget {
   const GuacamoleWebViewScreen({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _GuacamoleWebViewScreenState extends State<GuacamoleWebViewScreen> {
   Widget build(BuildContext context) {
     return Card(
       child: WebView(
-        initialUrl: 'https://flutter.dev',
+        initialUrl: website,
         onWebViewCreated: (WebViewController controller) {
           _controller.complete(controller);
         },

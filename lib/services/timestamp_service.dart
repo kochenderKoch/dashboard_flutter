@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dashboard_flutter/constant.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:dashboard_flutter/model/timecheck_model.dart';
@@ -6,8 +7,8 @@ import 'package:dashboard_flutter/model/timecheck_model.dart';
 class TimestampService {
   Future<List<TimecheckModel>> getTimestamps() async {
     try {
-      var response = await http
-          .get(Uri.parse('http://127.0.0.1:8000/api/datecontrol'), headers: {
+      var response =
+          await http.get(Uri.parse(API_URL + 'datecontrol'), headers: {
         //"Accept": "application/json",
         //"Access-Control_Allow_Origin": "*",
       });

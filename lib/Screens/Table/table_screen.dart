@@ -54,6 +54,7 @@ List<DataColumn> _buildTableHeader(BuildContext context,
 
   List<DataColumn> _cols = [];
 
+/** 
   for (var key in firstElement.toMap().keys) {
     _cols.add(DataColumn(
       label: Text(
@@ -64,7 +65,25 @@ List<DataColumn> _buildTableHeader(BuildContext context,
         ),
       ),
     ));
-  }
+  }*/
+  _cols.add(DataColumn(
+    label: Text(
+      "Benutzer",
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ));
+  _cols.add(DataColumn(
+    label: Text(
+      "Daten vom",
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ));
 
   return _cols;
 }
@@ -76,12 +95,15 @@ List<DataRow>? _buildTableContent(BuildContext context,
 
   for (var item in data) {
     List<DataCell> _currentCells = [];
-    for (var value in item.toMap().values) {
-      _currentCells.add(DataCell(Text(
-        value.toString(),
-        style: TextStyle(color: themeProvider.getTheme().colorScheme.onSurface),
-      )));
-    }
+
+    _currentCells.add(DataCell(Text(
+      item.user.toString(),
+      style: TextStyle(color: themeProvider.getTheme().colorScheme.onSurface),
+    )));
+    _currentCells.add(DataCell(Text(
+      item.readableTimestamp(),
+      style: TextStyle(color: themeProvider.getTheme().colorScheme.onSurface),
+    )));
 
     _rows.add(DataRow(
         cells: _currentCells,

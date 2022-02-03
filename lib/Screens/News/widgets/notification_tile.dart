@@ -77,7 +77,7 @@ class NotificationCard extends StatelessWidget {
                               fontSize: 12.0, fontWeight: FontWeight.w100),
                         ),
                         Text(
-                          model.date,
+                          model.readableTimestamp(),
                           style: const TextStyle(
                               fontSize: 12.0, fontWeight: FontWeight.w100),
                         )

@@ -19,7 +19,7 @@ class CaesarDashboardApp extends StatelessWidget {
         home: SideBarWidget(),
       ),
       feedbackBuilder: null,
-      localizationsDelegates: const [
+      localizationsDelegates: [
         GlobalFeedbackLocalizationsDelegate(),
       ],
       localeOverride: const Locale('de'),

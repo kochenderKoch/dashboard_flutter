@@ -89,16 +89,16 @@ class _SideBarWidgetState extends State<SideBarWidget> {
             icon: Icons.feed,
           ),
           const MenuItem(
-            title: 'FlutterWeb',
+            title: 'Guacamole',
             route: '/webview',
-            icon: Icons.feed,
+            icon: Icons.work,
           ),
           const MenuItem(
-            title: 'Top Level',
-            icon: Icons.file_copy,
+            title: 'Einstellungen',
+            icon: Icons.settings,
             children: [
               MenuItem(
-                title: 'Second Level Item 1',
+                title: 'Allgemeine',
                 route: '/bla',
               ),
               MenuItem(

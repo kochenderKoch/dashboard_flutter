@@ -1,11 +1,22 @@
+import 'dart:async';
+
 import 'package:dashboard_flutter/Screens/widgets/info_card.dart';
+import 'package:dashboard_flutter/constant.dart';
 import 'package:dashboard_flutter/provider/theme_provider.dart';
+import 'package:dashboard_flutter/services/freespace_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var freeSpace = "";
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +55,9 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: _width / 64,
                       ),
-                      const InfoCard(
+                      InfoCard(
                         title: "Speicherplatz",
-                        value: "200",
+                        value: getFreeSpace(),
                         topColor: Colors.red,
                         isActive: true,
                       ),
@@ -91,4 +102,11 @@ class HomeScreen extends StatelessWidget {
       ],
     );
   }
+}
+
+getFreeSpace() {
+  String space = "Error";
+  FreeSpaceService.getFreeSpace()
+      .then((value) => {space = value.free_space.toString()});
+  return space;
 }
